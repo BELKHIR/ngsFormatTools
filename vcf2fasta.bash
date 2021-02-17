@@ -1,4 +1,4 @@
-# This tool wil help to extract a multi-sample alignment from a vcf file
+# This tool will help to extract a multi-sample alignment from a vcf file
 # This is for unphased genotypes
 # for heterozygote snp an IUPAC Ambiguity Code is used
 #An alignment file  for each chromosome or contigs and a snp coordinates file are produced.
