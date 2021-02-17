@@ -12,12 +12,17 @@
 #To extract only a subset of samples, it's better to use : 
 # bcftools view -s sample1,sample2 fic.vcf | vcf2fasta.bash 
 
-# one can also change these two variable to set a range of samples to extract
+# one can also change these two variables to set a range of samples to extract
 #first=10 #the column of the first sample
 #last=0 #the column of the last sample to extract 0 = till the last one
-awk -v first=$first -v last=$last  ' BEGIN{first=10 ;last=0; FS="\t"; OFS="\t"; snp=0;oldChr="-1"; IUB["AC"]= "M";IUB["AG"]= "R";	IUB["AT"]= "W";	IUB["CG"]= "S";	IUB["CT"]= "Y";	IUB["GT"]= "K";	IUB["ACG"]= "V";	IUB["ACT"]= "H";	IUB["AGT"]= "D";	IUB["CGT"]= "B";	IUB["ACGT"]= "N";}
+awk -v first=$first -v last=$last  ' BEGIN{
+      first=10 ;last=0; FS="\t"; OFS="\t"; snp=0;oldChr="-1"; 
+      IUB["AC"]= "M";  IUB["AG"]= "R";	IUB["AT"]= "W";	
+      IUB["CG"]= "S";	 IUB["CT"]= "Y";	IUB["GT"]= "K";	
+      IUB["ACG"]= "V"; IUB["ACT"]= "H";	IUB["AGT"]= "D";	
+      IUB["CGT"]= "B"; IUB["ACGT"]= "N";
+      }
       $1!~"##" {
-      
       if (snp == 0)
       {
         if (last==0) last = NF  
@@ -36,7 +41,7 @@ awk -v first=$first -v last=$last  ' BEGIN{first=10 ;last=0; FS="\t"; OFS="\t"; 
         REF=$4
         split($5,ALT,",");
         
-        for (i=10; i <=NF; i++)
+        for (i=first; i <=last; i++)
         {
           
           split($i,info,":" )  ;
