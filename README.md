@@ -1,5 +1,6 @@
 # ngsFormatTools
 
+## vcf2fasta.bash
 This tool will help to extract a multi-sample alignment from a vcf file.
 This is for unphased genotypes.
 For heterozygote snp an IUPAC Ambiguity Code is used.
